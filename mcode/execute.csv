@@ -1,0 +1,41 @@
+microop,fmt,description, operands
+N/A,    0000000000000000, End of Microop list
+rxc,    00001xxxx0000000,Raises Exception number x, x: Exception Number to raise 
+lda,    00010oo0aaa00uu0, Loads The *o*th operand into the input a for alu u, o: Instruction Operand Number. a: ALU Input Number. u: Reserved Unit Number
+ldas,   00011oo000000uu0, Loads the size of the *o*th operand into the size control for alu u, o: Instruction Operand Number. u: Reserved Unit Number
+ldash,  00100hhhhrr0duu0, Loads the given mask shift and offset from the instructions h control bits into the size control for alu u, h: h field mask. r: Right shift of masked h value. d downwards decrement in bits
+xalu,   00101fffff000uu0, Executes the given function on reserved unit u, f: ALU Function (see mcode alu functions). u: Reserved Unit Number
+xalu2,  00110fffff0vvuu0, Executes the given function on reserved unit u and v simultaneously, f: ALU Function (see mcode alu functions). v: First Reserved Unit Number. u: Second Reserved unit Number.
+sta,    00111oo0aaa00uu0, Stores the output a from reserved unit u to the *o*th operand, o: Instruction Operand Number. a: ALU Output Number. u: Reserved Unit Number
+staf,   01000pp0fffffuu0, Stores the flags results from the *p*th position from alu u in the CPU flags register. p: Output Position. f: Disabled (unmodified) flags mask. u: Reserved Unit Number
+stafr,  01001rrrrrrrruu0, Stores each flag result from u into register r, r: Register Number. u: Reserved Unit Number
+lxa,    01010oo000000000, Locks the Address(s) corresponding to memory operand o for exclusive access by the current CPU until a uxa micro instruction is issued. o: Memory Operand Number.
+uxa,    01011oo000000000, Unlocks the Address(s) corresponding to memory operand o for exclusive access by the current CPU, o: Memory Operand Number.
+wfl,    0110000000fffff0, Writes f to the flags register, f: Value for each flag to be set/cleared
+cma,    01101oo0aaa00uu0, Computes the memory address of operand o and stores the address in input a for alu u, o: Memory Operand Number. a: ALU Input Number. u: Reserved Unit Number
+rdreg,  01110rrrrraaauu0, Reads from register r into input a for alu u, r: Register Number. a: ALU Input Number. u: Reserved Unit Number
+wrreg,  01111rrrrraaauu0, Writes ouput a from alu u into a register r, r: Register Number. a: ALU Output Number. u: Reserved Unit Number
+wrip,   1000000000aaauu0, Writes output a from alu u into the ip register, a: ALU Output Number. u: Reserved Unit Number
+wrmd,   1000100000aaauu0, Writes output a from alu u into the mode register, a: ALU Output Number. u: Reserved Unit Number
+rdregh, 1001000000aaauu0, Reads the (general-purpose) register in the h field into intput a of unit u, a: Input Number. u: Reserved Unit Number
+wrregh, 1001100000aaauu0, Writes ouput a from alu u into the (general-purpose) register in the h field, a: Output Number. u: Reserved Unit Number
+rdindr, 10100rrrssaaauu0, Reads from the address given in register r with size given by ss into input a of unit u, r: Register Number. s: Size Control. a: Input Number. u: Reserved Unit Number
+wrindr, 10101rrrssaaauu0, Writes ouput a from unit u to the address given in register r with size given by ss, r: Register Number. s: Size Control. a: Input Number. u: Reserved Unit Number
+tsaindr,10110rrrss00aa00, Tests whether an access of size given by ss of the address in r is valid, r: Register Number. s: Size Control. a: Access Type 
+ldaimm, 10111iiiiiaaauu0, Loads an immediate value into input a of unit u, i: Immediate value. a: Input Number. u: Reserved Unit Number.
+invldat,11000oo000aid000, Flushes/Invalidates Caches at Address designated by o, o: Memory Operand. a: Address Translation Cache. i: Instruction Cache. d: Data Cache.
+invldg, 1100100000aid000, Flushes/Invalidates all caches, a: Address Translation Cache. i: Instruction Cache. d: Data Cache.  
+mpbar,  1101000000000000, Multiprocessing Barrier (waits on all Exclusive Address Locks from all CPUs, and cpus in an mpbar microinstruction), 
+empstat,11111000000ssss0, Transition's CPU into state s, s: State (0: Low Power/1: Halted)
+/*COMMENT*/, -, Multiple "check"s may be chained together and execution resumes after the next non-check instruction
+chxm,   1111100000000001, Skips the next microop if the CPU is not in Program Execution Mode, 
+chop,   11110tttoo000001, Skips the next microop if the *o*th operand matches type t, t: Operand type (0: Integer Scalar/1: Floating-Point Scalar/2: Vector/3:Memory-only). o: Instruction Operand Number.
+chac,   11101aa0oo000001, Skips the next microop if the *o*th operand is valid for access a. Also validates memory operands and permission mode, a: Access Type (0: Read/1: Write/2: Excute). o: Instruction Operand Number.
+chsmp,  1110000000000001, Skips the next microop if the instruction's operands are simple (at most one memory operand),
+chh,    11011hhhh0000001, Skips the next microop if the given h bits are set for the instruction, h: h field mask
+chnh,   11010hhhh0000001, Skips the next microop if the given h bits are not set for the instruction, h: h field mask
+chfalst,11001fffff000001, Skips the next microop if any flag mentioned in f is clear, f: Flag mask
+chfanst,11000fffff000001, Skips the next microop if no flag mentioned in f is set, f: Flag mask  
+chfalcl,11001fffff000001, Skips the next microop if any flag mentioned in f is set, f: Flag mask
+chfancl,11000fffff000001, Skips the next microop if no flag mentioned in f is clear, f: Flag mask  
+chnop,  11110tttoo000001, Skips the next microop if the *o*th operand matches type t, t: Operand type (0: Integer Scalar/1: Floating-Point Scalar/2: Vector/3:Memory-only). o: Instruction Operand Number. 

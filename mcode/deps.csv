@@ -1,0 +1,8 @@
+microop,fmt,description,operands
+N/A,    0000000000000000, End of Dependencies List, 
+opr,    0001oo00aa000000, Performs access a on instruction operand o, o: Instruction Operand Number. a: Access Type (0: Read/1: Write/2: Read Address/3: Read-Write)
+reg,    0010rrrrrrrr0aa0, Performs access a on register r, r: Register NUmber. a: Access Type
+regh,   0011000000000aa0, Performs access a on a (general-purpose) register in h, a: Access Type
+mem,    0100000000000aa0, Performs access a on memory, a: Access type
+xu,     1000tttt00ccc000, Reserves a unit of type t with capabilities given by c, t: Unit type (0:ALU/1:FPU/2:IO). c: Unit Capabilities Type
+ser,    111111111111raim, Serializing Instruction, r: Serializes Registers. a: Serializes Address Lookup. i: Serializes Instruction Stream. m: Serializes data.

@@ -1,0 +1,6 @@
+microop,fmt,description,operands
+N/A,         0000000000000000, No decoding behaviour, 
+operands,    0001oo0000000000, Specifies number of instruction operands, o: Operand Count
+hvalid_mask, 0010hhhh00000000, Specifies the h bits which may be set for the instruction, h: h field mask
+prefix,      1111iiiiiiiiiiii, Specifies a valid prefix for the instruction, i: Prefix opcode
+invalid,     1111111111111111, Invalid Instruction (Raises UND)
