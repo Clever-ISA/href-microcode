@@ -1,11 +1,11 @@
 use std::io::Read;
 
 mod lex;
-
+mod parse;
 fn main() {
     let fname = std::env::args().nth(1).expect("Expected a file path");
 
-    let mut file = std::fs::File::open(&fname).unwrap_or_else(|e| {
+    let file = std::fs::File::open(&fname).unwrap_or_else(|e| {
         eprintln!("Could not open {fname}: {e}");
         std::process::exit(1)
     });
