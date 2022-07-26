@@ -6,7 +6,7 @@ ldas,   00011oo000000uu0, Loads the size of the *o*th operand into the size cont
 ldash,  00100hhhhrr0duu0, Loads the given mask shift and offset from the instructions h control bits into the size control for alu u, h: h field mask. r: Right shift of masked h value. d downwards decrement in bits
 xalu,   00101fffff000uu0, Executes the given function on reserved unit u, f: ALU Function (see mcode alu functions). u: Reserved Unit Number
 xalu2,  00110fffff0vvuu0, Executes the given function on reserved unit u and v simultaneously, f: ALU Function (see mcode alu functions). v: First Reserved Unit Number. u: Second Reserved unit Number.
-sta,    00111oo0aaa00uu0, Stores the output a from reserved unit u to the *o*th operand, o: Instruction Operand Number. a: ALU Output Number. u: Reserved Unit Number
+sta,    00111oo0aaa00uu0, Stores the output a from reserved unit u to the *o*th operand, o: Instruction Operand Number, a: ALU Output Number. u: Reserved Unit Number
 staf,   01000pp0fffffuu0, Stores the flags results from the *p*th position from alu u in the CPU flags register. p: Output Position. f: Disabled (unmodified) flags mask. u: Reserved Unit Number
 stafr,  01001rrrrrrrruu0, Stores each flag result from u into register r, r: Register Number. u: Reserved Unit Number
 lxa,    01010oo000000000, Locks the Address(s) corresponding to memory operand o for exclusive access by the current CPU until a uxa micro instruction is issued. o: Memory Operand Number.
