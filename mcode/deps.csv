@@ -5,4 +5,5 @@ reg,    0010rrrrrrrr0aa0, Performs access a on register r, r: Register NUmber. a
 regh,   0011000000000aa0, Performs access a on a (general-purpose) register in h, a: Access Type
 mem,    0100000000000aa0, Performs access a on memory, a: Access type
 xu,     1000tttt00ccc000, Reserves a unit of type t with capabilities given by c, t: Unit type (0:ALU/1:FPU/2:IO). c: Unit Capabilities Type
+axpi,   1001000000000001, The next dependency is applicable only if the instruction has a prefix from decoding,
 ser,    111111111111raim, Serializing Instruction, r: Serializes Registers. a: Serializes Address Lookup. i: Serializes Instruction Stream. m: Serializes data.
