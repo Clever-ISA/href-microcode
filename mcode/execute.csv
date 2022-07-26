@@ -1,6 +1,6 @@
 microop,fmt,description, operands
 N/A,    0000000000000000, End of Microop list,
-rxc,    00001xxxx0000000,Raises Exception number x, x: Exception Number to raise, 
+rxc,    00001xxxx0000000,Raises Exception number x, x: Exception Number to raise
 lda,    00010oo0aaa00uu0, Loads The *o*th operand into the input a for alu u, o: Instruction Operand Number. a: ALU Input Number. u: Reserved Unit Number
 ldas,   00011oo000000uu0, Loads the size of the *o*th operand into the size control for alu u, o: Instruction Operand Number. u: Reserved Unit Number
 ldash,  00100hhhhrr0duu0, Loads the given mask shift and offset from the instructions h control bits into the size control for alu u, h: h field mask. r: Right shift of masked h value. d downwards decrement in bits
