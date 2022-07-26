@@ -27,7 +27,7 @@ invldat,11000oo000aid000, Flushes/Invalidates Caches at Address designated by o,
 invldg, 1100100000aid000, Flushes/Invalidates all caches, a: Address Translation Cache. i: Instruction Cache. d: Data Cache.  
 mpbar,  1101000000000000, Multiprocessing Barrier (waits on all Exclusive Address Locks from all CPUs, and cpus in an mpbar microinstruction), 
 empstat,11111000000ssss0, Transition's CPU into state s, s: State (0: Low Power/1: Halted)
-/*COMMENT*/, -, Multiple "check"s may be chained together and execution resumes after the next non-check instruction
+/*COMMENT*/, -, Note: Multiple *check*s may be chained together and execution resumes after the next non-check instruction
 chxm,   1111100000000001, Skips the next microop if the CPU is not in Program Execution Mode, 
 chop,   11110tttoo000001, Skips the next microop if the *o*th operand matches type t, t: Operand type (0: Integer Scalar/1: Floating-Point Scalar/2: Vector/3:Memory-only). o: Instruction Operand Number.
 chac,   11101aa0oo000001, Skips the next microop if the *o*th operand is valid for access a. Also validates memory operands and permission mode, a: Access Type (0: Read/1: Write/2: Excute). o: Instruction Operand Number.
