@@ -1,0 +1,106 @@
+// xchg
+begin instruction 0x200
+begin decode
+    operands 2
+    hvalue_mask 0
+end decode
+begin deps
+    rw 0
+    rw 1
+    xu alu 0
+end deps
+begin execute
+    chrw 0, rxc UND
+    chrw 1, rxc UND
+    chsmp, rxc UND
+    lxa 0
+    lxa 1
+    rd 0, 0
+    rd 1, 1
+    xalu pass
+    wr 0, 1
+    wr 1, 0
+    uxa 1
+    uxa 0
+end execute
+
+// cmpxchg 
+begin instruction 0x201
+begin decode 
+    operands 3
+    hvalue_mask 0
+end decode
+begin deps
+    rw 0
+    rw 1
+    rd 2
+    xu alu 0
+    xu alu 0
+end deps
+begin execute
+    chrw 0, rxc UND
+    chrw 1, rxc UND
+    chrd 2, rxc UND
+    chsmp rxc UND
+    lxa 0
+    rd 0, 0
+    rd 0, 0, 1
+    rd 1, 1
+    rd 1, 1, 1
+    rd 2, 2, 1
+    xalu andn 0
+    xalu pass 1
+    staf 0x1, 0
+    chfalst 0x1, wr 0, 2, 1
+    chfalcl 0x1, wr 1, 0, 1
+    uxa 0
+end execute
+end instruction
+
+
+// wcmpxchg 
+begin instruction 0x202
+begin decode 
+    operands 3
+    hvalue_mask 0
+end decode
+begin deps
+    rw 0
+    rw 1
+    xu alu 0
+    xu alu 0
+end deps
+begin execute
+    chrw 0, rxc UND
+    chrw 1, rxc UND
+    chrd 2, rxc UND
+    chsmp rxc UND
+    lxa 0
+    rd 0, 0
+    rd 0, 0, 1
+    rd 1, 1
+    rd 1, 1, 1
+    rd 2, 2, 1
+    xalu andn 0
+    xalu pass 1
+    staf 0x1, 0
+    chfalst 0x1, wr 0, 2, 1
+    chfalcl 0x1, wr 1, 0, 1
+    uxa 0
+end execute
+end instruction
+
+// fence
+begin instruction 0x203
+begin decode
+    operands 0
+    hvalue_mask 0
+end decode 
+begin deps
+    ser mem
+end deps
+begin execute
+    invldg data
+    mpbar
+end execute
+end instruction

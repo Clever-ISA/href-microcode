@@ -1,0 +1,255 @@
+// add 
+
+begin instruction 0x001
+begin decode
+    operands 2
+    hvalid_mask 0x9
+    prefix 0x400
+end decode
+begin deps
+    rw 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chiop 0, rxc UND
+    chiop 1, rxc UND
+    chwr  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    chh 0x8, lxa 0
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu add
+    sta 0, 0
+    chnh 0x1, staf
+    chh 0x8, ulxa 0
+end execute
+end instruction
+
+// sub
+
+begin instruction 0x002
+begin decode
+    operands 2
+    hvalid_mask 0x9
+    prefix 0x400
+end decode
+begin deps
+    rw 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chiop 0, rxc UND
+    chiop 1, rxc UND
+    chwr  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    chh 0x8, lxa 0
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu sub
+    sta 0, 0
+    chnh 0x1, staf
+    chh 0x8, ulxa 0
+end execute
+end instruction
+
+// and
+
+begin instruction 0x003
+begin decode
+    operands 2
+    hvalid_mask 0x9
+    prefix 0x400
+end decode
+begin deps
+    rw 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chiop 0, rxc UND
+    chiop 1, rxc UND
+    chwr  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    chh 0x8, lxa 0
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu and
+    sta 0, 0
+    chnh 0x1, staf
+    chh 0x8, ulxa 0
+end execute
+end instruction
+
+// or
+
+begin instruction 0x004
+begin decode
+    operands 2
+    hvalid_mask 0x9
+    prefix 0x400
+end decode
+begin deps
+    rw 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chiop 0, rxc UND
+    chiop 1, rxc UND
+    chwr  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    chh 0x8, lxa 0
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu or
+    sta 0, 0
+    chnh 0x1, staf
+    chh 0x8, ulxa 0
+end execute
+end instruction
+
+// xor
+
+begin instruction 0x005
+begin decode
+    operands 2
+    hvalid_mask 0x9
+    prefix 0x400
+end decode
+begin deps
+    rw 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chiop 0, rxc UND
+    chiop 1, rxc UND
+    chwr  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    chh 0x8, lxa 0
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu xor
+    sta 0, 0
+    chnh 0x1, staf
+    chh 0x8, ulxa 0
+end execute
+end instruction
+
+// mov
+
+begin instruction 0x008
+begin decode
+    operands 2
+    hvalid_mask 0x0
+    prefix 0x400
+end decode
+begin deps
+    wr 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chwr 0, rxc UND
+    chrd 1, rxc UND
+    chopsmp rxc UND
+    lda 1, 0
+    xalu pass
+    sta 0, 0
+end execute
+end instruction 
+
+// lea
+
+begin instruction 0x009
+begin decode
+    operands 2
+    hvalid_mask 0x0
+end decode
+begin deps
+    wr 0
+    rda 1
+    xu alu 0
+end deps
+begin execute
+    chwr 0, rxc UND
+    chmo 1, rxc UND
+    cma 1, 0
+    xalu pass
+    sta 0, 0
+end execute
+end instruction
+
+// mov (left specialization)
+
+begin instruction 0x00A
+begin decode
+    operands 1
+    hvalid_mask 0xF
+    prefix 0x400
+end decode
+begin deps
+    rd 0
+    wrregh
+    xu alu 0
+end deps
+begin execute
+    chrd 0, rxc UND
+    lda 0, 0
+    xalu pass
+    wrregh 0
+end execute
+end instruction
+
+// mov (right specialization)
+
+begin instruction 0x00B
+begin decode
+    operands 1
+    hvalid_mask 0xF
+    prefix 0x400
+end decode
+begin deps
+    wr 0
+    rdregh
+    xu alu 0
+end deps
+begin execute
+    chwr 0, rxc UND
+    rdregh 0
+    xalu pass
+    sta 0, 0
+end execute
+end instruction
+
+// lea (left specialization)
+
+begin instruction 0x00C
+begin decode
+    operands 1
+    hvalid_mask 0xF
+end decode
+begin deps
+    rda 0
+    wrregh
+    xu alu 0
+end deps
+begin execute
+    chmeo 0, rxc UND
+    cma 0, 0
+    xalu pass
+    wrregh 0
+end execute
+end instruction

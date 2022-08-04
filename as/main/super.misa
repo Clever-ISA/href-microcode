@@ -1,0 +1,106 @@
+// halt
+begin instruction 0x801
+begin decode
+    operands 0
+    hvalue_mask 0
+end decode
+begin deps
+    ser reg, instr, mem
+end deps
+begin execute
+    chxm rxc PROT
+    empstat halt
+end execute
+end instruction
+
+// pcfl
+begin instruction 0x802
+begin decode
+    chxm rxc PROT
+    operands 0
+    hvalue_mask 0
+end decode
+begin deps
+    ser addr
+end deps
+begin execute
+    chxm rxc PROT
+    invldg addr
+end execute
+end instruction
+
+// flall
+begin instruction 0x803
+begin decode
+    operands 0
+    hvalue_mask 0
+end decode
+begin deps
+    ser instr, addr, mem
+end deps
+begin execute
+    chxm rxc PROT
+    invldg addr, instr, data
+end execute
+end instruction
+
+// dflush
+begin instruction 0x804
+begin decode
+    operands 1
+    hvalue_mask 0
+end decode
+begin deps
+    ser mem
+    rdaddr 0
+end deps
+begin execute
+    chxm rxc PROT
+    invldat 0, mem
+end execute
+
+// iflush
+begin instruction 0x805
+begin decode
+    operands 1
+    hvalue_mask 0
+end decode
+begin deps
+    ser mem
+    rdaddr 0
+end deps
+begin execute
+    chxm rxc PROT
+    invldat 0, instr
+end execute
+
+
+// in 
+begin instruction 0x806
+begin decode
+    operands 0
+    hvalue_mask 3
+    prefix 0x028
+    prefix 0x029
+end decode
+begin deps
+    rdreg r2
+    wrreg r0
+    axpi rwreg r5
+    axpi wrmem
+    xu io 0
+    axpi xu alu 2
+end deps
+begin execute
+    chxm rxc PROT
+    chapr tswrindr r5
+    rdreg r2, 0
+    xalu in, 0
+    chapr wrindr r5, 0
+    chapr rdreg r5, 0, 1
+    chapr ldaimm 1, 1, 1
+    chapr ldahv  0x3, 1, 1
+    chapr xalu sxadd, 1
+    chapr wrreg r5, 0, 1
+    chanpr wrregh r0
+end execute

@@ -1,0 +1,52 @@
+// push
+begin instruction 0x014
+begin decode
+    operands 1
+    hvalue_mask 0
+end decode
+begin deps
+    rd 0
+    rwreg r7
+    wrmem
+    xu alu 0
+    xu alu 0
+end deps
+begin execute
+    chnvop 0, rxc UND
+    chrd 0, rxc UND
+    tswrindr r7
+    lda 0, 0
+    xalu pass 0
+    rdreg r7, 0, 1
+    ldimm 8, 1, 1
+    xalu sub 1
+    wrreg r7, 0, 1
+    wrindr r7, 8, 0, 0
+end execute
+end instruction
+
+// pop
+begin instruction 0x015
+begin decode
+    operands 1
+    hvalue_mask 0
+end decode
+begin deps
+    wr 0
+    rwreg r7
+    rdmem
+    xu alu 0
+    xu alu 0
+end deps
+begin execute
+    chnvop 0, rxc UND
+    chwr 0, rxc UND
+    tsrdindr r7
+    rdindr r7, 8, 0, 0
+    rdreg r7, 0, 1
+    ldimm 8, 1, 1
+    xalu pass 0
+    xalu add 1
+    wr 0, 0, 0
+    wrreg r7, 0, 1
+end execute

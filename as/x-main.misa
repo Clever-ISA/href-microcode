@@ -1,0 +1,5 @@
+include main/alu.misa
+include main/atomic.misa
+include main/mem.misa
+include main/misc.misa
+include main/super.misa

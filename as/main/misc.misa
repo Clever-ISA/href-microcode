@@ -1,0 +1,75 @@
+// und
+begin instruction 0x000
+begin decode
+    operands 0
+    hvalid_mask 0xf
+end decode
+begin deps
+end deps
+begin execute
+    rxc UND
+end execute
+end instruction
+
+
+// nop (0 operands)
+
+begin instruction 0x010
+begin decode
+    operands 0
+    hvalue_mask 0xF
+end decode
+begin deps
+end deps
+begin execute
+end execute
+
+// nop (1 operand)
+
+begin instruction 0x011
+begin decode
+    operands 1
+    hvalue_mask 0xF
+end decode
+begin deps
+end deps
+begin execute
+end execute
+
+// nop (2 operands)
+
+begin instruction 0x012
+begin decode
+    operands 2
+    hvalue_mask 0xF
+end decode
+begin deps
+end deps
+begin execute
+end execute
+
+// nop (3 operands)
+
+begin instruction 0x013
+begin decode
+    operands 3
+    hvalue_mask 0xF
+end decode
+begin deps
+end deps
+begin execute
+end execute
+
+
+
+begin instruction 0xFFF
+begin decode
+    operands 0
+    hvalid_mask 0xf
+end decode
+begin deps
+end deps
+begin execute
+    rxc UND
+end execute
+end instruction
