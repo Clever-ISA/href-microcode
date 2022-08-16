@@ -13,7 +13,8 @@ wrindr,00010101rrrrrrrraaa0000000uu0sss,stores output a from unit u into the mem
 
 staf  ,00100000000000000pp0000000uu0000,stores the p'th position flags result from unit u into the flags register, p: flags position. u: Unit Number.
 stafr ,00100001rrrrrrrr0pp0000000uu0000,stores the p'th position flags result from unit u into register r, r: Register Number. p: flags position. u: Unit Number.
-stafo ,001000100oo000000000000000uu0000,stores the full flags result from unit u into operand o, o: Operand Number. u: Unit Number.
+stafo ,001000100oo000000000000000uu0000,stores the full flags result from unit u into operand o, o: Operand Number. u: Unit Number
+scf   ,00100011000fffff000mmmmm00000000,for each flag set in mask store the corresponding value f in flags, f: Flag value. m: flags mask.
 
 xxu   ,0011000000000000fff0000000uu0000, Executes function f on unit u, f: Unit-specific Function Number. u: Unit Number.
 xxu2  ,00110001ggg00000fff0vv0000uu0000, Executes function f on unit u simultaneously to function g on unit v, g: Second unit function number. f: First unit function number. v: Second unit number. u: First unit number.
@@ -29,3 +30,4 @@ uxaindr,01000101rrrrrrrr0000000000000sss, Monitor exclusive access to address ra
 
 
 rxc   ,01110000xxxx00000000000000000000, Raise Exception x in processor, x: Exception Number.
+empstat,01110001ssss0000000000000000000, Enter Processor State s, s: State Number (0: Halted. 1: Paused).

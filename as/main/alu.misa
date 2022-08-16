@@ -253,3 +253,51 @@ begin execute
     wrregh 0
 end execute
 end instruction
+
+// cmp
+
+begin instruction 0x06c
+begin decode
+    operands 2
+    hvalid_mask 0x9
+end decode
+begin deps
+    rd 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chrd  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu sub
+    staf
+end execute
+end instruction
+
+// test
+
+begin instruction 0x06d
+begin decode
+    operands 2
+    hvalid_mask 0x9
+end decode
+begin deps
+    rd 0
+    rd 1
+    xu alu 0
+end deps
+begin execute
+    chrd  0, rxc UND
+    chrd  1, rxc UND
+    chopsmp rxc UND
+    lda 0, 0
+    lda 1, 1
+    ldas 1
+    xalu mul
+    staf
+end execute
+end instruction

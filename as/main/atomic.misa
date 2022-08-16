@@ -84,8 +84,8 @@ begin execute
     xalu andn 0
     xalu pass 1
     chmxa 0, lxa 0
+    chnmxa 0, scf 0, 4
     chnmxa 0, uxa 0
-    chnmxa 0, rsip
     chnmxa 0, endexec
     staf 0x1, 0
     chfalst 0x1, wr 0, 2, 1
